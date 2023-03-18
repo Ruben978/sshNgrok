@@ -27,9 +27,11 @@ jobs:
 
           ./ngrok authtoken 1qFawXqVMqiQIXVNuCns87BGyqE_7YrihgGSkS4XWWnsrVzfq
 
-          NGROK_URL=$(./ngrok tcp 22 --log=stdout)
-
-          echo "SSH to: $NGROK_URL"
+          
+          ./ngrok tcp 22 -config /dev/null --log=stdout | tee ngrok.log &
+          sleep 5
+          NGROK_URL=$(cat ngrok.log | grep -o "tcp://[0-9a-z\.]*:[0-9]*")
+          echo "SSH to: $NGROK_URL""
 
       - name: Print login information
 
