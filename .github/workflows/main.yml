@@ -27,7 +27,7 @@ jobs:
 
           ./ngrok authtoken 1qFawXqVMqiQIXVNuCns87BGyqE_7YrihgGSkS4XWWnsrVzfq
 
-          NGROK_URL=$(./ngrok tcp 22 --log=stdout
+          NGROK_URL=$(./ngrok tcp 22 --log=stdout)
 
           echo "SSH to: $NGROK_URL"
 
