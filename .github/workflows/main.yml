@@ -24,7 +24,7 @@ jobs:
 
         run: |
 
-          ./ngrok authtoken <YOUR_AUTH_TOKEN>
+          ./ngrok authtoken 1qFawXqVMqiQIXVNuCns87BGyqE_7YrihgGSkS4XWWnsrVzfq
 
           NGROK_URL=$(./ngrok tcp 22 --log=stdout | grep -o "tcp://[0-9a-z\.]*:[0-9]*")
 
