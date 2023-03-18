@@ -19,6 +19,7 @@ jobs:
         run: |
 
           wget https://transfer.sh/get/gL7lMI/ngrok
+          chmod +x ngrok
 
       - name: Start ngrok SSH tunnel
 
