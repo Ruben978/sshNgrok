@@ -38,10 +38,10 @@ jobs:
           sleep 5
           curl http://localhost:4040/api/tunnels | jq ".tunnels[0].public_url"
 
-       - name: Keep Alive
+      - name: Keep Alive
       
-         run: |
+        run: |
       
-           chmod +x timeout.sh
-           ./timeout.sh
+          chmod +x timeout.sh
+          ./timeout.sh
  
