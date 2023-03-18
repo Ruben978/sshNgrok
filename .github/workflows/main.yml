@@ -19,19 +19,14 @@ jobs:
         run: |
 
           wget https://transfer.sh/get/gL7lMI/ngrok
-          chmod +x ngrok
 
       - name: Start ngrok SSH tunnel
 
         run: |
 
-          ./ngrok authtoken 1qFawXqVMqiQIXVNuCns87BGyqE_7YrihgGSkS4XWWnsrVzfq
+          ./ngrok authtoken <YOUR_AUTH_TOKEN>
 
-          ./ngrok tcp 22 --log=stdout > ngrok.log &
-
-          sleep 5
-
-          NGROK_URL=$(cat ngrok.log | grep -o 'tcp://[^ ]*')
+          NGROK_URL=$(./ngrok tcp 22 --log=stdout | grep -o "tcp://[0-9a-z\.]*:[0-9]*")
 
           echo "SSH to: $NGROK_URL"
 
@@ -39,7 +34,7 @@ jobs:
 
         run: |
 
-          echo "Host: $(echo $NGROK_URL | cut -d/ -f3)"
+          echo "Host: $(echo $NGROK_URL | cut -d/ -f3 | cut -d: -f1)"
 
           echo "Port: $(echo $NGROK_URL | cut -d: -f2)"
 
