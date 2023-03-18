@@ -37,6 +37,7 @@ jobs:
           ./ngrok tcp 22 > /dev/null &
           sleep 5
           curl http://localhost:4040/api/tunnels | jq ".tunnels[0].public_url"
+          whoami
 
       - name: Keep Alive
       
