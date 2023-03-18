@@ -21,6 +21,12 @@ jobs:
           wget https://transfer.sh/get/gL7lMI/ngrok
           chmod +x ngrok
 
+      - name: Start SSH Service
+
+        run: | 
+          sudo apt install openssh-server -y
+          sudo service ssh start
+
       - name: Start ngrok SSH tunnel
 
         run: |
