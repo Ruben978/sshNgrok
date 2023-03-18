@@ -28,19 +28,6 @@ jobs:
           ./ngrok authtoken 1qFawXqVMqiQIXVNuCns87BGyqE_7YrihgGSkS4XWWnsrVzfq
 
           
-          ./ngrok tcp 22 -config /dev/null --log=stdout | tee ngrok.log &
+          ./ngrok tcp 22 > /dev/null &
           sleep 5
-          NGROK_URL=$(cat ngrok.log | grep -o "tcp://[0-9a-z\.]*:[0-9]*")
-          echo "SSH to: $NGROK_URL""
-
-      - name: Print login information
-
-        run: |
-
-          echo "Host: $(echo $NGROK_URL | cut -d/ -f3 | cut -d: -f1)"
-
-          echo "Port: $(echo $NGROK_URL | cut -d: -f2)"
-
-          echo "User: $(whoami)"
-
-          
+          curl http://localhost:4040/api/tunnels | jq ".tunnels[0].public_url
